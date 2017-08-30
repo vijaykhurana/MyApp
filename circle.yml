@@ -22,7 +22,7 @@ dependencies:
       - echo y | $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
 test:
     override:
-        - ./gradlew assembleDebug -PCIversionName=$APP_VERSION_NAME.$VERSION_DATE -PCIversionCode=$((APP_VERSION_CODE+1))
+        - ./gradlew assembleDebug
         - cp -r app/build/outputs $CIRCLE_ARTIFACTS
 
 deployment:
