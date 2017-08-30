@@ -1,5 +1,23 @@
 apply plugin: 'com.android.application'
 
+project.ext{
+    versionName = "1.0"
+    versionCode = 1
+}
+
+project.afterEvaluate {
+    preBuild {}.dependsOn updateProjectInfo
+}
+task updateProjectInfo{
+if(project.hasProperty("CIversionName")) {
+    project.ext.versionName = CIversionName
+}
+   if(project.hasProperty("CIversionCode")) {
+       project.ext.versionCode = CIversionCode
+   }
+
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -7,8 +25,8 @@ android {
         applicationId "com.ingenvis.myapp"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode = project.ext.versionCode
+        versionName = project.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
