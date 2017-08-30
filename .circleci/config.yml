@@ -26,7 +26,7 @@ jobs:
       - store_test_results:
           path: app/build/test-results
 
-    test:
+  test:
         override:
            - emulator -avd circleci-android24 -no-window:
                   background: true
